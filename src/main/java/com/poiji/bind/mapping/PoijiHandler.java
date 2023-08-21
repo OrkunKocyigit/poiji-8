@@ -1,10 +1,6 @@
 package com.poiji.bind.mapping;
 
-import com.poiji.annotation.ExcelCell;
-import com.poiji.annotation.ExcelCellName;
-import com.poiji.annotation.ExcelCellRange;
-import com.poiji.annotation.ExcelRow;
-import com.poiji.annotation.ExcelUnknownCells;
+import com.poiji.annotation.*;
 import com.poiji.config.Casting;
 import com.poiji.config.Formatting;
 import com.poiji.exception.IllegalCastException;
@@ -12,7 +8,7 @@ import com.poiji.option.PoijiOptions;
 import com.poiji.util.AnnotationUtil;
 import com.poiji.util.ReflectUtil;
 import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler.SheetContentsHandler;
+import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler;
 import org.apache.poi.xssf.usermodel.XSSFComment;
 
 import java.lang.reflect.Field;
@@ -31,7 +27,7 @@ import static java.lang.String.valueOf;
  * <p>
  * Created by hakan on 22/10/2017
  */
-final class PoijiHandler<T> implements SheetContentsHandler {
+final class PoijiHandler<T> implements XSSFSheetXMLHandler.SheetContentsHandler {
     private T instance;
     private final Consumer<? super T> consumer;
     private int internalRow;
@@ -237,7 +233,6 @@ final class PoijiHandler<T> implements SheetContentsHandler {
         //no-op
     }
 
-    @Override
     public void endSheet() {
         AnnotationUtil.validateMandatoryNameColumns(options, formatting, type, titleToIndex, indexToTitle);
     }

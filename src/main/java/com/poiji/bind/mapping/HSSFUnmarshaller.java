@@ -1,11 +1,6 @@
 package com.poiji.bind.mapping;
 
-import com.poiji.annotation.DisableCellFormatXLS;
-import com.poiji.annotation.ExcelCell;
-import com.poiji.annotation.ExcelCellName;
-import com.poiji.annotation.ExcelCellRange;
-import com.poiji.annotation.ExcelRow;
-import com.poiji.annotation.ExcelUnknownCells;
+import com.poiji.annotation.*;
 import com.poiji.bind.Unmarshaller;
 import com.poiji.config.Casting;
 import com.poiji.config.Formatting;
@@ -18,22 +13,11 @@ import com.poiji.util.ReflectUtil;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.formula.BaseFormulaEvaluator;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.NumberToTextConverter;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Spliterator;
-import java.util.Spliterators;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -263,7 +247,7 @@ abstract class HSSFUnmarshaller extends PoijiWorkBook implements Unmarshaller {
     }
 
     private <T> void constructTypeValue(Row currentRow, T instance, Field field,
-            FieldAnnotationDetail annotationDetail) {
+                                        FieldAnnotationDetail annotationDetail) {
         Cell cell = currentRow.getCell(annotationDetail.getColumn());
 
         if (cell != null) {
@@ -271,7 +255,7 @@ abstract class HSSFUnmarshaller extends PoijiWorkBook implements Unmarshaller {
                 cell.setCellStyle(null);
             }
             String value;
-            if (options.isRawData() && cell.getCellType() == CellType.NUMERIC) {
+            if (options.isRawData() && cell.getCellTypeEnum() == CellType.NUMERIC) {
                 value = NumberToTextConverter.toText(cell.getNumericCellValue());
             } else {
                 value = dataFormatter.formatCellValue(cell, baseFormulaEvaluator);
@@ -298,7 +282,7 @@ abstract class HSSFUnmarshaller extends PoijiWorkBook implements Unmarshaller {
         return subclass == null
                 ? instance
                 : tailSetFieldValue(currentRow, subclass,
-                        setFieldValuesFromRowIntoInstance(currentRow, subclass.getSuperclass(), instance));
+                setFieldValuesFromRowIntoInstance(currentRow, subclass.getSuperclass(), instance));
     }
 
     boolean skip(final Row currentRow, int skip) {
@@ -308,7 +292,7 @@ abstract class HSSFUnmarshaller extends PoijiWorkBook implements Unmarshaller {
     boolean isRowEmpty(Row row) {
         for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
             Cell cell = row.getCell(c, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-            if (cell != null && cell.getCellType() != CellType.BLANK) {
+            if (cell != null && cell.getCellTypeEnum() != CellType.BLANK) {
                 return false;
             }
         }

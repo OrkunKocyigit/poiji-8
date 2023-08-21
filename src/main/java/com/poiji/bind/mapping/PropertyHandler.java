@@ -2,31 +2,22 @@ package com.poiji.bind.mapping;
 
 import com.poiji.annotation.ExcelProperty;
 import com.poiji.util.ReflectUtil;
-import org.apache.poi.ooxml.POIXMLProperties;
+import org.apache.poi.POIXMLProperties;
 
 import java.lang.reflect.Field;
 import java.util.stream.Stream;
 
-import static com.poiji.util.DefaultExcelPropertiesHelper.CATEGORY;
-import static com.poiji.util.DefaultExcelPropertiesHelper.CONTENT_STATUS;
-import static com.poiji.util.DefaultExcelPropertiesHelper.CREATED;
-import static com.poiji.util.DefaultExcelPropertiesHelper.CREATOR;
-import static com.poiji.util.DefaultExcelPropertiesHelper.DESCRIPTION;
-import static com.poiji.util.DefaultExcelPropertiesHelper.KEYWORDS;
-import static com.poiji.util.DefaultExcelPropertiesHelper.LAST_PRINTED;
-import static com.poiji.util.DefaultExcelPropertiesHelper.MODIFIED;
-import static com.poiji.util.DefaultExcelPropertiesHelper.REVISION;
-import static com.poiji.util.DefaultExcelPropertiesHelper.SUBJECT;
-import static com.poiji.util.DefaultExcelPropertiesHelper.TITLE;
+import static com.poiji.util.DefaultExcelPropertiesHelper.*;
 
 public final class PropertyHandler {
 
     /**
      * Creates an instance of {@code type} and deserializes the {@code poixmlProperties} into the fields annotated with {@link ExcelProperty}
-     * @param type              The type to deserialize into
-     * @param poixmlProperties  The properties to read from
-     * @param <T>               The type to deserialize into
-     * @return                  An instance of {@code type}
+     *
+     * @param type             The type to deserialize into
+     * @param poixmlProperties The properties to read from
+     * @param <T>              The type to deserialize into
+     * @return An instance of {@code type}
      */
     <T> T unmarshal(Class<T> type, POIXMLProperties poixmlProperties) {
 

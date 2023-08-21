@@ -3,10 +3,10 @@ package com.poiji.bind.mapping;
 import com.poiji.option.PoijiOptions;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.util.CellAddress;
+import org.apache.poi.xssf.eventusermodel.ReadOnlySharedStringsTable;
 import org.apache.poi.xssf.eventusermodel.XSSFSheetXMLHandler;
-import org.apache.poi.xssf.model.Comments;
-import org.apache.poi.xssf.model.SharedStrings;
-import org.apache.poi.xssf.model.Styles;
+import org.apache.poi.xssf.model.CommentsTable;
+import org.apache.poi.xssf.model.StylesTable;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -17,13 +17,13 @@ import org.xml.sax.ext.Attributes2Impl;
  */
 class XSSFSheetXMLPoijiHandler extends XSSFSheetXMLHandler {
 
-    private final Styles stylesTable;
+    private final StylesTable stylesTable;
     private final PoijiOptions poijiOptions;
     private final PoijiLogCellFormat cellFormat;
 
-    XSSFSheetXMLPoijiHandler(Styles styles,
-                             Comments comments,
-                             SharedStrings strings,
+    XSSFSheetXMLPoijiHandler(StylesTable styles,
+                             CommentsTable comments,
+                             ReadOnlySharedStringsTable strings,
                              SheetContentsHandler sheetContentsHandler,
                              DataFormatter dataFormatter,
                              boolean formulasNotResults,

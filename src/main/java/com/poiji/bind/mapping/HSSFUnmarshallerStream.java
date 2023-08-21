@@ -3,6 +3,7 @@ package com.poiji.bind.mapping;
 import com.poiji.bind.PoijiInputStream;
 import com.poiji.exception.PoijiException;
 import com.poiji.option.PoijiOptions;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
@@ -29,7 +30,7 @@ final class HSSFUnmarshallerStream extends HSSFUnmarshaller {
             }
 
             return WorkbookFactory.create(poijiInputStream.stream());
-        } catch (IOException e) {
+        } catch (IOException | InvalidFormatException e) {
             throw new PoijiException("Problem occurred while creating HSSFWorkbook", e);
         }
     }

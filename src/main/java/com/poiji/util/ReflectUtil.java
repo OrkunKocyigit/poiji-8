@@ -20,7 +20,7 @@ public final class ReflectUtil {
         T obj;
         try {
             Constructor<T> constructor = type.getDeclaredConstructor();
-            if (!constructor.canAccess(null)) {
+            if (!constructor.isAccessible()) {
                 constructor.setAccessible(true);
             }
             obj = constructor.newInstance();
@@ -38,7 +38,7 @@ public final class ReflectUtil {
      * Recursively does not refer to super classes.
      */
     static <T, A extends Annotation> Collection<A> findRecursivePoijiAnnotations(Class<T> typeToInspect,
-            Class<A> annotationType) {
+                                                                                 Class<A> annotationType) {
         List<A> annotations = new ArrayList<>();
 
         for (Field field : typeToInspect.getDeclaredFields()) {

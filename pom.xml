@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.ozlerhakan</groupId>
-    <artifactId>poiji</artifactId>
+    <groupId>com.github.orkun</groupId>
+    <artifactId>poiji-8</artifactId>
     <version>4.1.1</version>
     <packaging>jar</packaging>
 
     <name>poiji</name>
     <description>
-        Poiji allows you to map excel sheets to Java objects by means of Apache POI
+        Poiji allows you to map excel sheets to Java objects by means of Apache POI. This version is modified to work
+        with JDK 8 and Weblogic 12c
     </description>
-    <url>http://github.com/ozlerhakan/poiji</url>
+    <url>http://github.com/OrkunKocyigit/poiji-8</url>
 
     <licenses>
         <license>
@@ -24,35 +26,35 @@
 
     <developers>
         <developer>
-            <name>Hakan Ozler</name>
-            <email>ozler.hakan@gmail.com</email>
-            <organization>poiji</organization>
+            <name>Orkun Kocyigit</name>
+            <email>orkunkocyigit@gmx.com</email>
+            <organization>poiji-8</organization>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/ozlerhakan/poiji.git</connection>
-        <developerConnection>scm:git:ssh://github.com:ozlerhakan/poiji.git</developerConnection>
-        <url>http://github.com/ozlerhakan/poiji/tree/master</url>
+        <connection>scm:git:git://github.com/OrkunKocyigit/poiji-8.git</connection>
+        <developerConnection>scm:git:ssh://github.com:OrkunKocyigit/poiji-8.git</developerConnection>
+        <url>http://github.com/OrkunKocyigit/poiji-8/tree/master</url>
     </scm>
 
-    <inceptionYear>2017</inceptionYear>
+    <inceptionYear>2023</inceptionYear>
 
     <issueManagement>
         <system>github.com</system>
-        <url>https://github.com/ozlerhakan/poiji/issues</url>
+        <url>https://github.com/OrkunKocyigit/poiji-8/issues</url>
     </issueManagement>
 
     <properties>
-        <apache.poi.version>5.2.3</apache.poi.version>
+        <apache.poi.version>3.17</apache.poi.version>
         <junit.version>4.13.2</junit.version>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-enforcer-plugin.version>1.2</maven-enforcer-plugin.version>
-        <jdk.source>11</jdk.source>
-        <jdk.target>11</jdk.target>
+        <jdk.source>1.8</jdk.source>
+        <jdk.target>1.8</jdk.target>
 
         <maven.version>3.0.4</maven.version>
     </properties>
@@ -200,7 +202,7 @@
         <profile>
             <id>javadoclint</id>
             <activation>
-                <jdk>[1.8)</jdk>
+                <jdk>1.8</jdk>
             </activation>
             <properties>
                 <javadoc.none>-Xdoclint:none</javadoc.none>

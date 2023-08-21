@@ -4,6 +4,7 @@ import com.poiji.exception.PoijiException;
 import com.poiji.option.PoijiOptions;
 import com.poiji.parser.BooleanParser;
 import com.poiji.parser.Parsers;
+import com.poiji.util.Predicate11;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -135,13 +135,13 @@ public class DefaultCasting implements Casting {
     }
 
     /*
-     * 
+     *
      * ISSUE #57
      * if a date regex has been specified then it wont be null
      * so then make sure the string matches the pattern
      * if it doesn't, fall back to default
      * else continue to turn string into java date
-     * 
+     *
      * the reason for this is sometime Java will manage to parse a string to a
      * date object without any exceptions but since the string was not an exact
      * match you get a very strange date
@@ -168,11 +168,11 @@ public class DefaultCasting implements Casting {
      * so then make sure the string matches the pattern
      * if it doesn't, fall back to default
      * else continue to turn string into java date
-     * 
+     *
      * the reason for this is sometime java will manage to parse a string to a
      * date object without any exceptions but since the string was not an exact
      * match you get a very strange date
-     * 
+     *
      */
     private LocalDate localDateValue(String value, String sheetName, int row, int col, PoijiOptions options) {
         if (options.getDateRegex() != null && !value.matches(options.getDateRegex())) {
@@ -214,7 +214,7 @@ public class DefaultCasting implements Casting {
         final ParameterizedType genericType = (ParameterizedType) field.getGenericType();
         final Type fieldType = genericType.getActualTypeArguments()[0];
         String[] valueList = value.split(options.getListDelimiter());
-        Stream<String> valueStream = Stream.of(valueList).filter(Predicate.not(String::isEmpty));
+        Stream<String> valueStream = Stream.of(valueList).filter(Predicate11.not(String::isEmpty));
 
         if (fieldType == Integer.class) {
             return valueStream
@@ -252,7 +252,7 @@ public class DefaultCasting implements Casting {
     }
 
     protected Object getValueObject(Field field, int row, int col, PoijiOptions options, String rawValue,
-            Class<?> fieldType) {
+                                    Class<?> fieldType) {
         String sheetName = options.getSheetName();
         String value = options.trimCellValue() ? rawValue.trim() : rawValue;
 
