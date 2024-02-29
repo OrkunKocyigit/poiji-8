@@ -25,7 +25,7 @@ final class HSSFUnmarshallerFile extends HSSFUnmarshaller {
     protected Workbook workbook() {
         try {
             return WorkbookFactory.create(poijiFile.file(), options.getPassword(), true);
-        } catch (IOException | InvalidFormatException e) {
+        } catch (IOException e) {
             throw new PoijiException("Problem occurred while creating HSSFWorkbook", e);
         }
     }

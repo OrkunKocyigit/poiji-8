@@ -6,7 +6,7 @@
 
     <groupId>io.github.orkunkocyigit</groupId>
     <artifactId>poiji-8</artifactId>
-    <version>4.1.1</version>
+    <version>4.1.2</version>
     <packaging>jar</packaging>
 
     <name>poiji</name>
@@ -46,7 +46,7 @@
     </issueManagement>
 
     <properties>
-        <apache.poi.version>3.17</apache.poi.version>
+        <apache.poi.version>4.1.2</apache.poi.version>
         <junit.version>4.13.2</junit.version>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

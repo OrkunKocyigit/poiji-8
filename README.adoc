@@ -2,8 +2,8 @@
 :toclevels: 2
 
 = Poiji
-:version: v4.1.1
-:branch: 4.1.1
+:version: v4.1.2
+:branch: 4.1.2
 
 Poiji is a tiny thread-safe Java library that provides one way mapping from Excel sheets to Java classes.
 In a way it lets us convert each row of the specified excel data into Java objects.
@@ -22,7 +22,7 @@ In your Maven/Gradle project, first add the corresponding dependency:
 <dependency>
   <groupId>io.github.orkunkocyigit</groupId>
   <artifactId>poiji-8</artifactId>
-  <version>4.1.1</version>
+  <version>4.1.2</version>
 </dependency>
 ----
 

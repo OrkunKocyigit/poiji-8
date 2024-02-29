@@ -2,7 +2,7 @@ package com.poiji.bind.mapping;
 
 import com.poiji.annotation.ExcelProperty;
 import com.poiji.util.ReflectUtil;
-import org.apache.poi.POIXMLProperties;
+import org.apache.poi.ooxml.POIXMLProperties;
 
 import java.lang.reflect.Field;
 import java.util.stream.Stream;
